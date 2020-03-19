@@ -60,7 +60,7 @@ const ppl = [
     }
 ];
 
-function first(people, total) {
+async function first(people, total) {
     if(!Array.isArray(people)) {
         for(p in people) {
             if(p == 'name') {
@@ -68,13 +68,13 @@ function first(people, total) {
             }
             if(p == 'salary') {
                 total += people[p];
-                console.log("line71-" + total);
+                console.log("line71-" + total + " \n");
             }
 
             if(p == 'friends' && typeof people[p][0] != 'undefined') {
                 for(v1 of people[p]){
-                    total = first(v1, total);
-                    console.log("line77-" + total);
+                    total = await first(v1, total);
+                    console.log("line77-" + total + " \n");
 
                 }
             }
@@ -83,8 +83,8 @@ function first(people, total) {
     } else {
         for(v1 of people){
             console.log("array " + v1 + " \n");
-            total = first(v1, total);
-            console.log("line87-" + total);
+            total = await first(v1, total);
+            console.log("line87-" + total + " \n");
 
         }
     }
